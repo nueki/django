@@ -1,0 +1,20 @@
+{% if latest_question_list %}
+Poll questions
+<ul>
+    {% for question in latest_question_list %}
+    <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+    {% endfor %}
+</ul>
+</br>
+Other menu
+</br>
+</br>
+<a href="{% url 'polls:chart' %}">Gantt chart sample</a>
+</br>
+</br>
+<a href="{% url 'polls:chart2' %}">Linear regression for iris data</a>
+</br>
+
+{% else %}
+<p>No polls are available.</p>
+{% endif %}

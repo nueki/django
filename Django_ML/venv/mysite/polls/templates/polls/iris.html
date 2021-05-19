@@ -1,0 +1,22 @@
+<head>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+<h2>Graph: relation between sepal_length and patel_length</h2>
+{{ graph_html_virginica |safe }}
+<h3>Parameters</h3>
+<ul>
+    <li>Coefficients : {{ coefficients }}</li>
+    <li>Mean_squared_error: {{ mean_squared_error }}</li>
+    <li>R2 score : {{ r2score }}</li>
+</ul>
+<h2>Predict petal_length</h2>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Predict</button>
+</form>
+<p>{{ input }}</p>
+<p>{{ prediction }}</p>
+
+</body>

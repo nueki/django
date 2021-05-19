@@ -1,0 +1,25 @@
+version: '3'
+services:
+ db:
+    container_name: django-docker-db
+    image: mysql:5.7
+    volumes: ['.:/var/lib/mysql']
+    restart: 'always'
+    environment:                  # 4
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: django-db
+      MYSQL_USER: django
+      MYSQL_PASSWORD: django
+      TZ: 'Asia/Tokyo'
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
+ web:
+    container_name: django-docker
+    build: .
+    command: python3 manage.py runserver 0.0.0.0:8000
+    working_dir: /code
+    # ports:
+    #   - 18000:8000
+    volumes:
+      - .:/code
+    depends_on:
+      - db
